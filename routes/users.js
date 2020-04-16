@@ -6,14 +6,16 @@ const router=express.Router();
 
 
 //import user controller
-const homeController=require('../controllers/home_controller');
+const userController=require('../controllers/user_controller');
 
 //route for sign-up page
-router.get('/sign-up',homeController.signUp);
+router.get('/sign-up',userController.signUp);
 
 //route for sign-in page
-router.get('/sign-in',homeController.signIn);
+router.get('/sign-in',userController.signIn);
 
+router.post('/create',userController.create);
 
+router.post('/create-session',userController.createSession);
 //export router
 module.exports=router;
