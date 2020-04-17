@@ -41,8 +41,41 @@ module.exports.signIn=function(req,res){
     });
 }
 
-//sign in and create a session
-module.exports.createSession = function(req, res){
-   // req.flash('success','Logged in sucessfully');
-    return res.redirect('/');
+//sign in and create session for the user
+module.exports.createSession=function(req,res){
+    //steps to authenticate
+    //find the user
+    User.findOne({email:req.body.email},function(err,user){
+        if(err){console.log('error in finding user in signing in');return;}
+         //handle the user found
+         //console.log(user);
+         if(user){
+            //handle password which doesn't match
+            if(user.password!=req.body.password){
+               return res.redirect('back');}
+            //handle session creation
+            // res.cookie('user_id',user.id);
+           // console.log(user.password);
+           console.log(user.id);
+            return res.redirect('/users/profile/<%= user.id %>');
+         }
+         else{
+            //handle user not found
+            return res.redirect('back');
+         }
+    });
+       
+}
+
+module.exports.profile = function(req, res){
+    console.log(req.params.id);
+    User.findById(req.params.id,function(err,user){
+        console.log(user);
+       // return res.redirect("back");
+      return res.render('user_profile', {
+          title: 'User Profile',
+          profileUser:user
+      });
+    });
+ 
 }
