@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/Ambika4/authenticationSystem#readme",
   "dependencies": {
+    "connect-mongo": "^3.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "mongoose": "^5.9.9",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "twilio": "^3.42.2"
   }

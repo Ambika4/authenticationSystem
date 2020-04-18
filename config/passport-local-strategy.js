@@ -21,14 +21,14 @@ function(req,email,password,done){
        //Error
        if(err)
        {
-           req.flash('error in finding user',err);
+          // req.flash('error in finding user',err);
            //report error to passport
            return done(err);
        }
        //if user is not found or password is incorrect
        if(!user || user.password!=password)
        {
-        req.flash('error','error,Invalid username or password');
+        //req.flash('error','error,Invalid username or password');
            return done(null,false);
        }
 
@@ -47,7 +47,7 @@ passport.serializeUser(function(user,done){
 passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
         if(err){
-            req.flash('error','Error in finding user -->Passport');
+            //req.flash('error','Error in finding user -->Passport');
            //report error to passport
            //done function is call back function
            return done(err);
